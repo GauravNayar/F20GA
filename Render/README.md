@@ -3,7 +3,7 @@
 Renders Folder
 
 Models:
-The coursework consists of total 4 models with 2 complex and 2 simple models. All of the models were modelled manually without any models imported to save memory space and demonstrate modelling proficiency.
+The coursework consists of total 4 models with 2 complex and 2 simple models. All of the models were modelled manually without any models imported externally from the web, to save memory space and demonstrate modelling proficiency.
 
 Complex models-
 1. Aeroplane - The aeroplane was modelled after a cessna areoplane. The modelling process consisted of looking at images and following youtube tutorials of aeroplane modelling to get proper aerodynamic design of the aeroplane. The plane modelling was started with a simple circle which was filled, extruded and scaled to form the body of the plane model. The different parts of the plane model were made by duplicating certain sections, edge sliding and then extruding out the new section from the body. Mirror modifier was used on certain sections like the wings and back wings. The plane body was set as the parent of the different parts of the plane model observable in the collection window, in order to be able to move and scale the model as a whole for the main scene set up.

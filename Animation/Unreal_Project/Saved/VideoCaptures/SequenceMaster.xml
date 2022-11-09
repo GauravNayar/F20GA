@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmeml version="4">
+	<project>
+		<name>SequenceMasterProject</name>
+		<children>
+			<clip id="masterclip-1">
+				<masterclipid>masterclip-1</masterclipid>
+				<ismasterclip>TRUE</ismasterclip>
+				<duration>622</duration>
+				<rate>
+					<timebase>30</timebase>
+					<ntsc>FALSE</ntsc>
+				</rate>
+				<in>0</in>
+				<out>622</out>
+				<name>shot0010_01</name>
+				<media>
+					<video>
+						<track>
+							<clipitem id="clipitem-1">
+								<masterclipid>masterclip-1</masterclipid>
+								<ismasterclip>TRUE</ismasterclip>
+								<name>shot0010_01</name>
+								<enabled>TRUE</enabled>
+								<duration>622</duration>
+								<rate>
+									<timebase>30</timebase>
+									<ntsc>FALSE</ntsc>
+								</rate>
+								<in>0</in>
+								<out>622</out>
+								<anamorphic>FALSE</anamorphic>
+								<pixelaspectratio>square</pixelaspectratio>
+								<fielddominance>lower</fielddominance>
+								<file id="file-1">
+									<name>shot0010_01.avi</name>
+									<pathurl>file://localhost/C%3a/Users/gaura/OneDrive/Documents/Unreal%20Projects/UnrealScene/Saved/VideoCaptures/shot0010_01.avi</pathurl>
+									<rate>
+										<timebase>30</timebase>
+										<ntsc>FALSE</ntsc>
+									</rate>
+									<duration>622</duration>
+									<timecode>
+										<rate>
+											<timebase>30</timebase>
+											<ntsc>FALSE</ntsc>
+										</rate>
+										<string>00:00:00:00</string>
+										<frame>0</frame>
+									</timecode>
+									<media>
+										<video>
+											<samplecharacteristics>
+												<rate>
+													<timebase>30</timebase>
+													<ntsc>FALSE</ntsc>
+												</rate>
+												<width>1920</width>
+												<height>1080</height>
+												<anamorphic>FALSE</anamorphic>
+												<pixelaspectratio>square</pixelaspectratio>
+												<fielddominance>lower</fielddominance>
+											</samplecharacteristics>
+										</video>
+									</media>
+								</file>
+							</clipitem>
+						</track>
+					</video>
+				</media>
+				<logginginfo>
+					<description />
+					<scene />
+					<shottake />
+					<good />
+					<originalvideofilename />
+					<originalaudiofilename />
+					<lognote>[UEShotSection=/Game/Cinematics/Sequences/Sequence/SequenceMaster.SequenceMaster:MovieScene_0.MovieSceneCinematicShotTrack_0.MovieSceneCinematicShotSection_0][UEShotStartOffset=0][UEShotHandleFrames=0]</lognote>
+				</logginginfo>
+				<colorinfo>
+					<lut />
+					<lut1 />
+					<asc_sop />
+					<asc_sat />
+					<lut2 />
+				</colorinfo>
+			</clip>
+			<clip id="masterclip-2">
+				<masterclipid>masterclip-2</masterclipid>
+				<ismasterclip>TRUE</ismasterclip>
+				<duration>128</duration>
+				<rate>
+					<timebase>30</timebase>
+					<ntsc>FALSE</ntsc>
+				</rate>
+				<in>0</in>
+				<out>128</out>
+				<name>shot0020_01</name>
+				<media>
+					<video>
+						<track>
+							<clipitem id="clipitem-2">
+								<masterclipid>masterclip-2</masterclipid>
+								<ismasterclip>TRUE</ismasterclip>
+								<name>shot0020_01</name>
+								<enabled>TRUE</enabled>
+								<duration>128</duration>
+								<rate>
+									<timebase>30</timebase>
+									<ntsc>FALSE</ntsc>
+								</rate>
+								<in>0</in>
+								<out>128</out>
+								<anamorphic>FALSE</anamorphic>
+								<pixelaspectratio>square</pixelaspectratio>
+								<fielddominance>lower</fielddominance>
+								<file id="file-2">
+									<name>shot0020_01.avi</name>
+									<pathurl>file://localhost/C%3a/Users/gaura/OneDrive/Documents/Unreal%20Projects/UnrealScene/Saved/VideoCaptures/shot0020_01.avi</pathurl>
+									<rate>
+										<timebase>30</timebase>
+										<ntsc>FALSE</ntsc>
+									</rate>
+									<duration>128</duration>
+									<timecode>
+										<rate>
+											<timebase>30</timebase>
+											<ntsc>FALSE</ntsc>
+										</rate>
+										<string>00:00:00:00</string>
+										<frame>0</frame>
+									</timecode>
+									<media>
+										<video>
+											<samplecharacteristics>
+												<rate>
+													<timebase>30</timebase>
+													<ntsc>FALSE</ntsc>
+												</rate>
+												<width>1920</width>
+												<height>1080</height>
+												<anamorphic>FALSE</anamorphic>
+												<pixelaspectratio>square</pixelaspectratio>
+												<fielddominance>lower</fielddominance>
+											</samplecharacteristics>
+										</video>
+									</media>
+								</file>
+							</clipitem>
+						</track>
+					</video>
+				</media>
+				<logginginfo>
+					<description />
+					<scene />
+					<shottake />
+					<good />
+					<originalvideofilename />
+					<originalaudiofilename />
+					<lognote>[UEShotSection=/Game/Cinematics/Sequences/Sequence/SequenceMaster.SequenceMaster:MovieScene_0.MovieSceneCinematicShotTrack_0.MovieSceneCinematicShotSection_5][UEShotStartOffset=0][UEShotHandleFrames=0]</lognote>
+				</logginginfo>
+				<colorinfo>
+					<lut />
+					<lut1 />
+					<asc_sop />
+					<asc_sat />
+					<lut2 />
+				</colorinfo>
+			</clip>
+			<clip id="masterclip-3">
+				<masterclipid>masterclip-3</masterclipid>
+				<ismasterclip>TRUE</ismasterclip>
+				<duration>302</duration>
+				<rate>
+					<timebase>30</timebase>
+					<ntsc>FALSE</ntsc>
+				</rate>
+				<in>0</in>
+				<out>302</out>
+				<name>shot0030_01</name>
+				<media>
+					<video>
+						<track>
+							<clipitem id="clipitem-3">
+								<masterclipid>masterclip-3</masterclipid>
+								<ismasterclip>TRUE</ismasterclip>
+								<name>shot0030_01</name>
+								<enabled>TRUE</enabled>
+								<duration>302</duration>
+								<rate>
+									<timebase>30</timebase>
+									<ntsc>FALSE</ntsc>
+								</rate>
+								<in>0</in>
+								<out>302</out>
+								<anamorphic>FALSE</anamorphic>
+								<pixelaspectratio>square</pixelaspectratio>
+								<fielddominance>lower</fielddominance>
+								<file id="file-3">
+									<name>shot0030_01.avi</name>
+									<pathurl>file://localhost/C%3a/Users/gaura/OneDrive/Documents/Unreal%20Projects/UnrealScene/Saved/VideoCaptures/shot0030_01.avi</pathurl>
+									<rate>
+										<timebase>30</timebase>
+										<ntsc>FALSE</ntsc>
+									</rate>
+									<duration>302</duration>
+									<timecode>
+										<rate>
+											<timebase>30</timebase>
+											<ntsc>FALSE</ntsc>
+										</rate>
+										<string>00:00:00:00</string>
+										<frame>0</frame>
+									</timecode>
+									<media>
+										<video>
+											<samplecharacteristics>
+												<rate>
+													<timebase>30</timebase>
+													<ntsc>FALSE</ntsc>
+												</rate>
+												<width>1920</width>
+												<height>1080</height>
+												<anamorphic>FALSE</anamorphic>
+												<pixelaspectratio>square</pixelaspectratio>
+												<fielddominance>lower</fielddominance>
+											</samplecharacteristics>
+										</video>
+									</media>
+								</file>
+							</clipitem>
+						</track>
+					</video>
+				</media>
+				<logginginfo>
+					<description />
+					<scene />
+					<shottake />
+					<good />
+					<originalvideofilename />
+					<originalaudiofilename />
+					<lognote>[UEShotSection=/Game/Cinematics/Sequences/Sequence/SequenceMaster.SequenceMaster:MovieScene_0.MovieSceneCinematicShotTrack_0.MovieSceneCinematicShotSection_6][UEShotStartOffset=0][UEShotHandleFrames=0]</lognote>
+				</logginginfo>
+				<colorinfo>
+					<lut />
+					<lut1 />
+					<asc_sop />
+					<asc_sat />
+					<lut2 />
+				</colorinfo>
+			</clip>
+			<sequence id="sequence-1">
+				<duration>1052</duration>
+				<rate>
+					<timebase>30</timebase>
+					<ntsc>FALSE</ntsc>
+				</rate>
+				<name>SequenceMaster</name>
+				<media>
+					<video>
+						<format>
+							<samplecharacteristics>
+								<rate>
+									<timebase>30</timebase>
+									<ntsc>FALSE</ntsc>
+								</rate>
+								<width>1920</width>
+								<height>1080</height>
+								<anamorphic>FALSE</anamorphic>
+								<pixelaspectratio>square</pixelaspectratio>
+								<fielddominance>lower</fielddominance>
+							</samplecharacteristics>
+						</format>
+						<track>
+							<clipitem id="clipitem-4">
+								<masterclipid>masterclip-1</masterclipid>
+								<ismasterclip>FALSE</ismasterclip>
+								<name>shot0010_01</name>
+								<enabled>TRUE</enabled>
+								<duration>622</duration>
+								<rate>
+									<timebase>30</timebase>
+									<ntsc>FALSE</ntsc>
+								</rate>
+								<start>0</start>
+								<end>622</end>
+								<in>0</in>
+								<out>622</out>
+								<file id="file-1" />
+							</clipitem>
+							<clipitem id="clipitem-5">
+								<masterclipid>masterclip-2</masterclipid>
+								<ismasterclip>FALSE</ismasterclip>
+								<name>shot0020_01</name>
+								<enabled>TRUE</enabled>
+								<duration>128</duration>
+								<rate>
+									<timebase>30</timebase>
+									<ntsc>FALSE</ntsc>
+								</rate>
+								<start>622</start>
+								<end>750</end>
+								<in>0</in>
+								<out>128</out>
+								<file id="file-2" />
+							</clipitem>
+							<clipitem id="clipitem-6">
+								<masterclipid>masterclip-3</masterclipid>
+								<ismasterclip>FALSE</ismasterclip>
+								<name>shot0030_01</name>
+								<enabled>TRUE</enabled>
+								<duration>302</duration>
+								<rate>
+									<timebase>30</timebase>
+									<ntsc>FALSE</ntsc>
+								</rate>
+								<start>750</start>
+								<end>1052</end>
+								<in>0</in>
+								<out>302</out>
+								<file id="file-3" />
+							</clipitem>
+							<enabled>TRUE</enabled>
+							<locked>FALSE</locked>
+						</track>
+					</video>
+					<audio>
+						<numOutputChannels>1</numOutputChannels>
+						<format>
+							<samplecharacteristics>
+								<depth>16</depth>
+								<samplerate>44100</samplerate>
+							</samplecharacteristics>
+						</format>
+						<outputs>
+							<group>
+								<index>1</index>
+								<numchannels>1</numchannels>
+								<downmix>0</downmix>
+								<channel>
+									<index>1</index>
+								</channel>
+							</group>
+						</outputs>
+					</audio>
+				</media>
+				<timecode>
+					<rate>
+						<timebase>30</timebase>
+						<ntsc>FALSE</ntsc>
+					</rate>
+					<string>00:00:00:00</string>
+					<frame>0</frame>
+				</timecode>
+			</sequence>
+		</children>
+	</project>
+</xmeml>

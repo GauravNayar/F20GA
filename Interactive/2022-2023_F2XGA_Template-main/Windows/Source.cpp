@@ -234,7 +234,7 @@ void startup()
 	cout << "RENDERER: " << (char *)glGetString(GL_RENDERER) << endl;	
 
 	cout << endl << "Loading content..." << endl;	
-	content.LoadGLTF("assets/Scene_Planebackup2.gltf");
+	content.LoadGLTF("assets/Scene_Plane.gltf");
 
 	pipeline.CreatePipeline();
 	pipeline.LoadShaders("shaders/vs_model.glsl", "shaders/fs_model.glsl");

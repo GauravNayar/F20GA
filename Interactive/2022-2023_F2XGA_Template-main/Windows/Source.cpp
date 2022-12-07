@@ -80,6 +80,7 @@ mat4 projMatrix;							 		// Our Projection Matrix
 vec3 cameraPosition = vec3(0.0f, 0.0f, 5.0f);		// Where is our camera
 vec3 cameraFront = vec3(0.0f, 0.0f, -1.0f);			// Camera front vector
 vec3 cameraUp = vec3(0.0f, 1.0f, 0.0f);				// Camera up vector
+
 auto aspect = (float)windowWidth / (float)windowHeight;	// Window aspect ration
 auto fovy = 45.0f;									// Field of view (y axis)
 bool keyStatus[1024];								// Track key strokes
@@ -235,6 +236,8 @@ void startup()
 
 	cout << endl << "Loading content..." << endl;	
 	content.LoadGLTF("assets/Scene_Plane.gltf");
+	
+	
 
 	pipeline.CreatePipeline();
 	pipeline.LoadShaders("shaders/vs_model.glsl", "shaders/fs_model.glsl");
@@ -261,14 +264,22 @@ void startup()
 
 void update()
 {
-	if (keyStatus[GLFW_KEY_LEFT]) modelRotation.y += 0.05f;
-	if (keyStatus[GLFW_KEY_RIGHT]) modelRotation.y -= 0.05f;
-	if (keyStatus[GLFW_KEY_UP]) modelRotation.x += 0.05f;
-	if (keyStatus[GLFW_KEY_DOWN]) modelRotation.x -= 0.05f;
-	if (keyStatus[GLFW_KEY_W]) modelPosition.z += 0.10f;
-	if (keyStatus[GLFW_KEY_S]) modelPosition.z -= 0.10f;
+	//if (keyStatus[GLFW_KEY_LEFT]) modelRotation.y += 0.05f;
+	//if (keyStatus[GLFW_KEY_RIGHT]) modelRotation.y -= 0.05f;
+	//if (keyStatus[GLFW_KEY_UP]) modelRotation.x += 0.05f;
+	//if (keyStatus[GLFW_KEY_DOWN]) modelRotation.x -= 0.05f;
+	//if (keyStatus[GLFW_KEY_W]) modelPosition.z += 0.10f;
+	//if (keyStatus[GLFW_KEY_S]) modelPosition.z -= 0.10f;
 
 	if (keyStatus[GLFW_KEY_R]) pipeline.ReloadShaders();
+
+	// Move camera
+	if (keyStatus[GLFW_KEY_W]) cameraPosition.z -= 0.05f;
+	if (keyStatus[GLFW_KEY_S]) cameraPosition.z += 0.05f;
+	if (keyStatus[GLFW_KEY_A]) cameraPosition.x -= 0.05f;
+	if (keyStatus[GLFW_KEY_D]) cameraPosition.x += 0.05f;
+	if (keyStatus[GLFW_KEY_LEFT]) modelRotation.y -= 0.0005f;
+	if (keyStatus[GLFW_KEY_RIGHT]) modelRotation.y += 0.0005f;
 
 	// Start the Dear ImGui frame
 	ImGui_ImplOpenGL3_NewFrame();
@@ -299,14 +310,15 @@ void render()
 	// Setup camera
 	glm::mat4 viewMatrix = glm::lookAt(cameraPosition,				 // eye
 									   cameraPosition + cameraFront, // centre
-									   cameraUp);					 // up
-
+									   cameraUp);					 // up							   
+	
 	// Do some translations, rotations and scaling
 	// glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(modelPosition.x+rX, modelPosition.y+rY, modelPosition.z+rZ));
 	glm::mat4 modelMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 	modelMatrix = glm::rotate(modelMatrix, modelRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
 	modelMatrix = glm::rotate(modelMatrix, modelRotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
 	modelMatrix = glm::scale(modelMatrix, glm::vec3(1.2f, 1.2f, 1.2f));
+	
 
 	glm::mat4 mv_matrix = viewMatrix * modelMatrix;
 
@@ -349,6 +361,8 @@ void ui()
 		ImGui::Text("About: 3D Graphics and Animation 2022"); // ImGui::Separator();
 		ImGui::Text("Performance: %.3fms/Frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		ImGui::Text("Pipeline: %s", pipeline.pipe.error?"ERROR":"OK");
+		ImGui::Text("Press W,A,S,D to move camera");
+		ImGui::Text("Press left, right to move scene model");
 	}
 	ImGui::End();
 

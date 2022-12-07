@@ -76,7 +76,7 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 91214,
+            "count" : 208914,
             "max" : [
                 60.67795944213867,
                 7.799495697021484,
@@ -92,45 +92,45 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 91214,
+            "count" : 208914,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 91214,
+            "count" : 208914,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5125,
-            "count" : 132552,
+            "count" : 302952,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 1094568,
+            "byteLength" : 2506968,
             "byteOffset" : 0,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 1094568,
-            "byteOffset" : 1094568,
+            "byteLength" : 2506968,
+            "byteOffset" : 2506968,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 729712,
-            "byteOffset" : 2189136,
+            "byteLength" : 1671312,
+            "byteOffset" : 5013936,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 530208,
-            "byteOffset" : 2918848,
+            "byteLength" : 1211808,
+            "byteOffset" : 6685248,
             "target" : 34963
         }
     ],
@@ -142,7 +142,7 @@
     ],
     "buffers" : [
         {
-            "byteLength" : 3449056,
+            "byteLength" : 7897056,
             "uri" : "Scene_Plane.bin"
         }
     ]

@@ -6,6 +6,7 @@
 //#pragma comment(linker, "/NODEFAULTLIB:MSVCRT")
 
 //#define STB_IMAGE_IMPLEMENTATION
+#include "tinygltf/stb_image.h"
 
 #include <iostream>
 #include <fstream>
@@ -77,7 +78,7 @@ auto windowWidth = 800;								// Window width
 auto windowHeight =800;								// Window height
 auto running(true);							  		// Are we still running our main loop
 mat4 projMatrix;							 		// Our Projection Matrix
-vec3 cameraPosition = vec3(0.0f, 0.0f, 5.0f);		// Where is our camera
+vec3 cameraPosition = vec3(0.0f, 0.0f, 100.0f);		// Where is our camera
 vec3 cameraFront = vec3(0.0f, 0.0f, -1.0f);			// Camera front vector
 vec3 cameraUp = vec3(0.0f, 1.0f, 0.0f);				// Camera up vector
 
@@ -94,6 +95,20 @@ Debugger debugger;									// Add one debugger to use for callbacks ( Win64 - op
 
 vec3 modelPosition;									// Model position
 vec3 modelRotation;									// Model rotation
+
+Content aeroplane;
+vec3 aeroplanePosition;
+vec3 aeroplaneRotation;
+
+GLuint aeroplanetext;
+GLuint scenetext;
+
+// Lighting
+glm::vec4 ia = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
+GLfloat ka = 1.0f;
+glm::vec4 id = glm::vec4(0.1f, 0.5f, 0.8f, 1.0f);
+glm::vec4 is = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+glm::vec4 lightPos = glm::vec4(-1.0f, -0.0f, 1.0f, 2.0f);
 
 
 int main()
@@ -236,15 +251,87 @@ void startup()
 
 	cout << endl << "Loading content..." << endl;	
 	content.LoadGLTF("assets/Scene_Plane.gltf");
-	
-	
+	aeroplane.LoadGLTF("assets/aeroplaneGL.gltf");
 
 	pipeline.CreatePipeline();
 	pipeline.LoadShaders("shaders/vs_model.glsl", "shaders/fs_model.glsl");
 
+	// //textures
+	// glCreateTextures(GL_TEXTURE_2D, 1, &aeroplanetext); 
+	
+	// // Flip images as OpenGL expects 0.0 coordinates on the y-axis to be at the bottom of the image. 
+	// stbi_set_flip_vertically_on_load(true); 
+	
+	// // Load image Information. 
+	// int iWidth, iHeight, iChannels; 
+	// unsigned char *iData = stbi_load("assets/aeroplanetex.png", &iWidth, &iHeight, &iChannels, 0); 
+	
+	// // Load and create a texture  
+	// glBindTexture(GL_TEXTURE_2D, aeroplanetext); // All upcoming operations now have effect on this texture object  
+	// glTextureStorage2D(aeroplanetext, 1, GL_RGB8, iWidth, iHeight); 
+	
+	// glTextureSubImage2D(aeroplanetext, 0, 
+	// 		0, 0, 
+	// 		iWidth, iHeight, 
+	// 		GL_RGB, GL_UNSIGNED_BYTE, iData); 
+	
+	//glLinkProgram(pipeline.pipe.program);
+
+	// Load Texture OPENGL 4.3
+	//string name = "aeroplanetex.png";
+	glGenTextures(1, &aeroplanetext);
+	// Load image Information.
+	int iWidth, iHeight, iChannels;
+	unsigned char *iData = stbi_load("assets/aeroplanetex.png", &iWidth, &iHeight, 
+	&iChannels, 0);
+	// Load and create a texture
+	glBindTexture(GL_TEXTURE_2D, aeroplanetext); // All upcoming operations now have effect on this texture object
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8, iWidth, iHeight);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, iWidth, iHeight, GL_RGBA, 
+	GL_UNSIGNED_BYTE, iData);
+	// This only works for 2D Textures...
+	// Set the texture wrapping parameters 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// Set texture filtering parameters 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// Generate mipmaps 
+	glGenerateMipmap(GL_TEXTURE_2D);
+	// //glLinkProgram(pipeline.pipe.program);
+	stbi_image_free(iData);
+
+// Load Texture OPENGL 4.3
+	//string name = "aeroplanetex.png";
+	glGenTextures(1, &scenetext);
+	// Load image Information.
+	//int iWidth, iHeight, iChannels;
+	iData = stbi_load("assets/sceneplanetex.png", &iWidth, &iHeight, 
+	&iChannels, 0);
+	// Load and create a texture
+	glBindTexture(GL_TEXTURE_2D, scenetext); // All upcoming operations now have effect on this texture object
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8, iWidth, iHeight);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, iWidth, iHeight, GL_RGBA, 
+	GL_UNSIGNED_BYTE, iData);
+	// This only works for 2D Textures...
+	// Set the texture wrapping parameters (next lecture)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// Set texture filtering parameters (next lecture)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// Generate mipmaps (next lecture)
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+
+
 	// Start from the centre
 	modelPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-	modelRotation = glm::vec3(0.0f, 0.0f, 0.0f);
+	modelRotation = glm::vec3(0.0f, 3.14f, 0.0f);
+
+	aeroplanePosition = glm::vec3(0.0f, -2.5f, 80.0f);
+	aeroplaneRotation = glm::vec3(0.0f, 3.14f, 0.0f);
+
 
 	// A few optimizations.
 	glFrontFace(GL_CCW);
@@ -266,21 +353,45 @@ void update()
 {
 	//if (keyStatus[GLFW_KEY_LEFT]) modelRotation.y += 0.05f;
 	//if (keyStatus[GLFW_KEY_RIGHT]) modelRotation.y -= 0.05f;
-	//if (keyStatus[GLFW_KEY_UP]) modelRotation.x += 0.05f;
-	//if (keyStatus[GLFW_KEY_DOWN]) modelRotation.x -= 0.05f;
-	//if (keyStatus[GLFW_KEY_W]) modelPosition.z += 0.10f;
-	//if (keyStatus[GLFW_KEY_S]) modelPosition.z -= 0.10f;
+	// if (keyStatus[GLFW_KEY_UP]) modelRotation.x += 0.05f;
+	// if (keyStatus[GLFW_KEY_DOWN]) modelRotation.x -= 0.05f;
+	if (keyStatus[GLFW_KEY_W]) modelPosition.z += 0.05f;
+	if (keyStatus[GLFW_KEY_S]) modelPosition.z -= 0.05f;
 
 	if (keyStatus[GLFW_KEY_R]) pipeline.ReloadShaders();
 
 	// Move camera
-	if (keyStatus[GLFW_KEY_W]) cameraPosition.z -= 0.05f;
-	if (keyStatus[GLFW_KEY_S]) cameraPosition.z += 0.05f;
+	if (keyStatus[GLFW_KEY_W]) cameraPosition.z -= 0.5f;
+	if (keyStatus[GLFW_KEY_S]) cameraPosition.z += 0.5f;
 	if (keyStatus[GLFW_KEY_A]) cameraPosition.x -= 0.05f;
 	if (keyStatus[GLFW_KEY_D]) cameraPosition.x += 0.05f;
-	if (keyStatus[GLFW_KEY_LEFT]) modelRotation.y -= 0.0005f;
-	if (keyStatus[GLFW_KEY_RIGHT]) modelRotation.y += 0.0005f;
+	// if (keyStatus[GLFW_KEY_LEFT]) aeroplaneRotation.y -= 0.05f;
+	// if (keyStatus[GLFW_KEY_RIGHT]) aeroplaneRotation.y += 0.05f;
 
+	if (keyStatus[GLFW_KEY_I]) lightPos.z -= 0.05f;
+	if (keyStatus[GLFW_KEY_K]) lightPos.z += 0.05f;
+	if (keyStatus[GLFW_KEY_J]) lightPos.x -= 0.05f;
+	if (keyStatus[GLFW_KEY_L]) lightPos.x += 0.05f;
+	if (keyStatus[GLFW_KEY_M]) lightPos.y -= 0.05f;
+	if (keyStatus[GLFW_KEY_N]) lightPos.y += 0.05f;
+	if (keyStatus[GLFW_KEY_B]) lightPos.w += 0.05f;
+	if (keyStatus[GLFW_KEY_T]) aeroplanePosition.z -= 0.5f;
+	if (keyStatus[GLFW_KEY_G]) aeroplanePosition.z += 0.5f;
+	if (keyStatus[GLFW_KEY_F]) aeroplanePosition.x -= 0.05f;
+	if (keyStatus[GLFW_KEY_H]) aeroplanePosition.x += 0.05f;
+	if (keyStatus[GLFW_KEY_T] and keyStatus[GLFW_KEY_SPACE]) {
+		aeroplanePosition.z -= 0.5f;
+		aeroplanePosition.y += 0.05f;
+	}
+	// if (keyStatus[GLFW_KEY_T] and keyStatus[GLFW_KEY_H]) {
+	// 	aeroplanePosition.z -= 0.05f;
+	// 	aeroplaneRotation.y += 0.0005f;
+	// }
+	// if (keyStatus[GLFW_KEY_T] and keyStatus[GLFW_KEY_F]) {
+	// 	aeroplanePosition.z -= 0.05f;
+	// 	aeroplaneRotation.y -= 0.0005f;
+	// }
+	
 	// Start the Dear ImGui frame
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
@@ -306,6 +417,17 @@ void render()
 
 	// Use our shader programs
 	glUseProgram(pipeline.pipe.program);
+	
+	//Light
+	glUniform4f(glGetUniformLocation(pipeline.pipe.program, "viewPosition"), cameraPosition.x, cameraPosition.y, cameraPosition.z, 1.0);
+	glUniform4f(glGetUniformLocation(pipeline.pipe.program, "lightPosition"), lightPos.x, lightPos.y, lightPos.z, lightPos.w);
+	glUniform4f(glGetUniformLocation(pipeline.pipe.program, "ia"), ia.r, ia.g, ia.b, 1.0);
+	glUniform1f(glGetUniformLocation(pipeline.pipe.program, "ka"), ka);
+	glUniform4f(glGetUniformLocation(pipeline.pipe.program, "id"), id.r, id.g, id.b, 1.0);
+	glUniform1f(glGetUniformLocation(pipeline.pipe.program, "kd"), 1.0f);
+	glUniform4f(glGetUniformLocation(pipeline.pipe.program, "is"), is.r, is.g, is.b, 1.0);
+	glUniform1f(glGetUniformLocation(pipeline.pipe.program, "ks"), 1.0f);
+	glUniform1f(glGetUniformLocation(pipeline.pipe.program, "shininess"), 32.0f);
 
 	// Setup camera
 	glm::mat4 viewMatrix = glm::lookAt(cameraPosition,				 // eye
@@ -318,15 +440,44 @@ void render()
 	modelMatrix = glm::rotate(modelMatrix, modelRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
 	modelMatrix = glm::rotate(modelMatrix, modelRotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
 	modelMatrix = glm::scale(modelMatrix, glm::vec3(1.2f, 1.2f, 1.2f));
-	
 
 	glm::mat4 mv_matrix = viewMatrix * modelMatrix;
 
 	glUniformMatrix4fv(glGetUniformLocation(pipeline.pipe.program, "model_matrix"), 1, GL_FALSE, &modelMatrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(pipeline.pipe.program, "view_matrix"), 1, GL_FALSE, &viewMatrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(pipeline.pipe.program, "proj_matrix"), 1, GL_FALSE, &projMatrix[0][0]);
+	
+	GLint scenetex_location = glGetUniformLocation(pipeline.pipe.program, "tex");
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, scenetext);
+	glUniform1i(scenetex_location, 0);
 
 	content.DrawModel(content.vaoAndEbos, content.model);
+
+	//aeroplane
+	glm::mat4 modelMatrix1 = glm::translate(glm::mat4(1.0f), aeroplanePosition);
+	modelMatrix1 = glm::rotate(modelMatrix1, modelRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
+	modelMatrix1 = glm::rotate(modelMatrix1, aeroplaneRotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
+	modelMatrix1 = glm::scale(modelMatrix1, glm::vec3(1.2f, 1.2f, 1.2f));
+
+	glm::mat4 mv_matrix1 = viewMatrix * modelMatrix1;
+
+	glUniformMatrix4fv(glGetUniformLocation(pipeline.pipe.program, "model_matrix"), 1, GL_FALSE, &modelMatrix1[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(pipeline.pipe.program, "view_matrix"), 1, GL_FALSE, &viewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(pipeline.pipe.program, "proj_matrix"), 1, GL_FALSE, &projMatrix[0][0]);
+
+	//Set active texture to aeroplane texture
+	GLint tex_location = glGetUniformLocation(pipeline.pipe.program, "tex");
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, aeroplanetext);
+	glUniform1i(tex_location, 0);
+
+	// increase shininess 
+	glUniform1f(glGetUniformLocation(pipeline.pipe.program, "shininess"), 80.0f);
+	glUniform4f(glGetUniformLocation(pipeline.pipe.program, "is"), 0.1f, 0.1f, 0.1f, 10.0f);
+
+	aeroplane.DrawModel(aeroplane.vaoAndEbos, aeroplane.model);
+
 	
 	#if defined(__APPLE__)
 		glCheckError();

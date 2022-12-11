@@ -51,9 +51,10 @@
                     "attributes" : {
                         "POSITION" : 0,
                         "NORMAL" : 1,
-                        "TEXCOORD_0" : 2
+                        "TANGENT" : 2,
+                        "TEXCOORD_0" : 3
                     },
-                    "indices" : 3,
+                    "indices" : 4,
                     "material" : 0
                 }
             ]
@@ -76,7 +77,7 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 208914,
+            "count" : 207212,
             "max" : [
                 60.67795944213867,
                 7.799495697021484,
@@ -92,45 +93,57 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 208914,
+            "count" : 207212,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 208914,
-            "type" : "VEC2"
+            "count" : 207212,
+            "type" : "VEC4"
         },
         {
             "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 207212,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 4,
             "componentType" : 5125,
-            "count" : 302952,
+            "count" : 300270,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 2506968,
+            "byteLength" : 2486544,
             "byteOffset" : 0,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 2506968,
-            "byteOffset" : 2506968,
+            "byteLength" : 2486544,
+            "byteOffset" : 2486544,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 1671312,
-            "byteOffset" : 5013936,
+            "byteLength" : 3315392,
+            "byteOffset" : 4973088,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 1211808,
-            "byteOffset" : 6685248,
+            "byteLength" : 1657696,
+            "byteOffset" : 8288480,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1201080,
+            "byteOffset" : 9946176,
             "target" : 34963
         }
     ],
@@ -142,7 +155,7 @@
     ],
     "buffers" : [
         {
-            "byteLength" : 7897056,
+            "byteLength" : 11147256,
             "uri" : "Scene_Plane.bin"
         }
     ]

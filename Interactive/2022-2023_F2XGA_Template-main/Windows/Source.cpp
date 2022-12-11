@@ -81,6 +81,7 @@ mat4 projMatrix;							 		// Our Projection Matrix
 vec3 cameraPosition = vec3(0.0f, 0.0f, 100.0f);		// Where is our camera
 vec3 cameraFront = vec3(0.0f, 0.0f, -1.0f);			// Camera front vector
 vec3 cameraUp = vec3(0.0f, 1.0f, 0.0f);				// Camera up vector
+vec3 cameraPositionReset = cameraPosition;			// Reset Camera
 
 auto aspect = (float)windowWidth / (float)windowHeight;	// Window aspect ration
 auto fovy = 45.0f;									// Field of view (y axis)
@@ -99,16 +100,17 @@ vec3 modelRotation;									// Model rotation
 Content aeroplane;
 vec3 aeroplanePosition;
 vec3 aeroplaneRotation;
+vec3 aeroplanePositionReset;
 
 GLuint aeroplanetext;
 GLuint scenetext;
 
 // Lighting
-glm::vec4 ia = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
+glm::vec4 ia = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 GLfloat ka = 1.0f;
-glm::vec4 id = glm::vec4(0.1f, 0.5f, 0.8f, 1.0f);
+glm::vec4 id = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 glm::vec4 is = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-glm::vec4 lightPos = glm::vec4(-1.0f, -0.0f, 1.0f, 2.0f);
+glm::vec4 lightPos = glm::vec4(0.0f, 0.0f, 0.0f, 2.0f);
 
 
 int main()
@@ -331,7 +333,7 @@ void startup()
 
 	aeroplanePosition = glm::vec3(0.0f, -2.5f, 80.0f);
 	aeroplaneRotation = glm::vec3(0.0f, 3.14f, 0.0f);
-
+	aeroplanePositionReset = aeroplanePosition;
 
 	// A few optimizations.
 	glFrontFace(GL_CCW);
@@ -351,22 +353,22 @@ void startup()
 
 void update()
 {
-	//if (keyStatus[GLFW_KEY_LEFT]) modelRotation.y += 0.05f;
-	//if (keyStatus[GLFW_KEY_RIGHT]) modelRotation.y -= 0.05f;
+	// if (keyStatus[GLFW_KEY_LEFT]) modelRotation.y += 0.05f;
+	// if (keyStatus[GLFW_KEY_RIGHT]) modelRotation.y -= 0.05f;
 	// if (keyStatus[GLFW_KEY_UP]) modelRotation.x += 0.05f;
 	// if (keyStatus[GLFW_KEY_DOWN]) modelRotation.x -= 0.05f;
-	if (keyStatus[GLFW_KEY_W]) modelPosition.z += 0.05f;
-	if (keyStatus[GLFW_KEY_S]) modelPosition.z -= 0.05f;
+	// if (keyStatus[GLFW_KEY_W]) modelPosition.z += 0.05f;
+	// if (keyStatus[GLFW_KEY_S]) modelPosition.z -= 0.05f;
 
 	if (keyStatus[GLFW_KEY_R]) pipeline.ReloadShaders();
 
 	// Move camera
 	if (keyStatus[GLFW_KEY_W]) cameraPosition.z -= 0.5f;
 	if (keyStatus[GLFW_KEY_S]) cameraPosition.z += 0.5f;
-	if (keyStatus[GLFW_KEY_A]) cameraPosition.x -= 0.05f;
-	if (keyStatus[GLFW_KEY_D]) cameraPosition.x += 0.05f;
-	// if (keyStatus[GLFW_KEY_LEFT]) aeroplaneRotation.y -= 0.05f;
-	// if (keyStatus[GLFW_KEY_RIGHT]) aeroplaneRotation.y += 0.05f;
+	if (keyStatus[GLFW_KEY_A]) cameraPosition.x -= 0.5f;
+	if (keyStatus[GLFW_KEY_D]) cameraPosition.x += 0.5f;
+	// if (keyStatus[GLFW_KEY_LEFT]) aeroplaneRotation.y += 0.05f;
+	// if (keyStatus[GLFW_KEY_RIGHT]) aeroplaneRotation.y -= 0.05f;
 
 	if (keyStatus[GLFW_KEY_I]) lightPos.z -= 0.05f;
 	if (keyStatus[GLFW_KEY_K]) lightPos.z += 0.05f;
@@ -375,13 +377,20 @@ void update()
 	if (keyStatus[GLFW_KEY_M]) lightPos.y -= 0.05f;
 	if (keyStatus[GLFW_KEY_N]) lightPos.y += 0.05f;
 	if (keyStatus[GLFW_KEY_B]) lightPos.w += 0.05f;
+	// Aeroplane Movement
 	if (keyStatus[GLFW_KEY_T]) aeroplanePosition.z -= 0.5f;
 	if (keyStatus[GLFW_KEY_G]) aeroplanePosition.z += 0.5f;
 	if (keyStatus[GLFW_KEY_F]) aeroplanePosition.x -= 0.05f;
 	if (keyStatus[GLFW_KEY_H]) aeroplanePosition.x += 0.05f;
+	// Takeoff
 	if (keyStatus[GLFW_KEY_T] and keyStatus[GLFW_KEY_SPACE]) {
 		aeroplanePosition.z -= 0.5f;
 		aeroplanePosition.y += 0.05f;
+	}
+	// Reset
+	if (keyStatus[GLFW_KEY_Z]) {
+		aeroplanePosition = aeroplanePositionReset;
+		cameraPosition = cameraPositionReset;
 	}
 	// if (keyStatus[GLFW_KEY_T] and keyStatus[GLFW_KEY_H]) {
 	// 	aeroplanePosition.z -= 0.05f;
